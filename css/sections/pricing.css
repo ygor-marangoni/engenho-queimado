@@ -1,0 +1,33 @@
+/* Purchase conditions */
+.pricing-section{padding:92px 0 84px;color:#252525;border-top:1px solid #e1ded7;background:#f1eee8}
+.pricing-shell{display:grid;grid-template-columns:minmax(300px,.58fr) minmax(0,1fr);grid-template-areas:"intro panel" "cta panel" "note note";align-items:start;gap:0 clamp(64px,8vw,138px)}
+.pricing-intro{grid-area:intro}
+.pricing-intro h2{max-width:570px;font-size:clamp(38px,3.55vw,57px)}
+.pricing-intro>p:not(.section-kicker){max-width:480px;margin:29px 0 0;color:#62615c;font-size:14px;line-height:1.75}
+.section-button{display:inline-flex;align-items:center;justify-content:center;gap:14px;min-height:48px;padding:0 18px;border-radius:4px;font-size:9.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;transition:background-color .2s ease,border-color .2s ease,color .2s ease}
+.section-button-dark{color:#f7f5f0;border:1px solid #252525;background:#252525}
+.section-button-dark:hover,.section-button-dark:focus-visible{border-color:#3a3b38;background:#3a3b38}
+.pricing-cta{grid-area:cta;justify-self:start;margin-top:34px}
+.purchase-panel{grid-area:panel;min-width:0}
+.purchase-panel__main{min-height:0;padding:40px 42px 24px;border:1px solid #dfdcd5;border-radius:16px 16px 0 0;background:#fbfaf7}
+.purchase-panel__label{margin:0;color:#a77b43;font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.purchase-panel__value{display:block;margin-top:19px;color:#252525;font-family:var(--display);font-size:clamp(52px,4.4vw,64px);font-weight:400;letter-spacing:-.045em;line-height:.95}
+.purchase-panel__program{margin:28px 0 0;color:#383936;font-family:var(--display);font-size:20px;font-weight:500;letter-spacing:-.02em;line-height:1.25}
+.purchase-panel__auxiliary{display:block;margin-top:12px;color:#77756f;font-size:11px;line-height:1.55}
+.purchase-benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.purchase-benefit{min-width:0;min-height:208px;padding:28px 26px;border-right:1px solid #dfdcd5;border-bottom:1px solid #dfdcd5;background:#fbfaf7}
+.purchase-benefit:first-child{border-left:1px solid #dfdcd5;border-radius:0 0 0 16px}
+.purchase-benefit:last-child{border-radius:0 0 16px 0}
+.purchase-benefit__icon{display:block;color:#a77b43}
+.purchase-benefit__title{margin:23px 0 0;color:#30312e;font-family:var(--display);font-size:17px;font-weight:500;letter-spacing:-.02em;line-height:1.2}
+.purchase-benefit__text{margin:10px 0 0;color:#77756f;font-size:11px;line-height:1.55}
+.pricing-note{grid-area:note;width:100%;max-width:none;margin:48px auto 0;color:#6f6d67;font-size:11px;line-height:1.65;text-align:center}
+.pricing-note em{font-style:normal}
+@media(max-width:1024px){.pricing-section{padding:78px 0 76px}.pricing-shell{grid-template-columns:1fr;grid-template-areas:"intro" "panel" "cta" "note";gap:0}.pricing-intro{max-width:720px}.pricing-intro h2{max-width:680px}.pricing-intro>p:not(.section-kicker){max-width:620px}.purchase-panel{margin-top:46px}.pricing-cta{margin-top:28px}.pricing-note{margin-top:40px}}
+@media(max-width:760px){.purchase-panel__main{min-height:0;padding:32px 28px}.purchase-benefits{grid-template-columns:1fr}.purchase-benefit{min-height:0;padding:25px 28px;border-left:1px solid #dfdcd5}.purchase-benefit:first-child{border-radius:0}.purchase-benefit:last-child{border-radius:0 0 16px 16px}.purchase-benefit__title{margin-top:17px}.purchase-benefit__text{max-width:520px}}
+@media(max-width:520px){.pricing-section{padding:58px 0 62px}.pricing-intro h2{font-size:clamp(34px,10vw,46px)}.pricing-intro>p:not(.section-kicker){margin-top:23px;font-size:13px}.purchase-panel{margin-top:36px}.purchase-panel__main{padding:27px 23px}.purchase-panel__value{font-size:clamp(48px,14vw,58px)}.purchase-panel__program{font-size:18px}.purchase-benefit{padding:23px}.pricing-cta{width:100%;margin-top:24px}.pricing-note{font-size:11px;line-height:1.6}}
+@media(max-width:360px){.purchase-panel__main,.purchase-benefit{padding-left:19px;padding-right:19px}.purchase-panel__value{font-size:45px}}
+
+@media(max-width:820px){.pricing-intro h2{font-size:32px}.purchase-panel__value{font-size:46px}}
+
+@media(max-width:820px){.pricing-intro{text-align:center}.pricing-intro .section-kicker{margin-left:auto;margin-right:auto}.pricing-intro h2{margin-left:auto;margin-right:auto}.pricing-intro>p:not(.section-kicker){max-width:620px;font-size:13px;text-align:center;margin-top:24px;margin-left:auto;margin-right:auto}}
