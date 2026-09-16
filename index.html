@@ -9,21 +9,26 @@
   <meta name="description" content="Apartamentos à venda em Franca com 2 quartos, suíte, sacada, vaga de garagem e financiamento pelo Minha Casa, Minha Vida. Conheça o Residencial Lourival Sgarioni.">
 
   <title>Apartamentos à venda em Franca | Residencial Lourival Sgarioni</title>
+  <link rel="canonical" href="https://residencial-lourival-sgarioni.vercel.app/">
 
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
+  <meta property="og:url" content="https://residencial-lourival-sgarioni.vercel.app/">
   <meta property="og:site_name" content="Residencial Lourival Sgarioni">
   <meta property="og:title" content="Apartamentos à venda em Franca | Residencial Lourival Sgarioni">
   <meta property="og:description" content="Apartamentos à venda em Franca com 2 quartos, suíte, sacada, vaga de garagem e financiamento pelo Minha Casa, Minha Vida.">
-  <meta property="og:image" content="imagens/bg-hero.webp">
+  <meta property="og:image" content="https://residencial-lourival-sgarioni.vercel.app/imagens/bg-hero.webp">
+  <meta property="og:image:secure_url" content="https://residencial-lourival-sgarioni.vercel.app/imagens/bg-hero.webp">
   <meta property="og:image:type" content="image/webp">
   <meta property="og:image:width" content="1672">
   <meta property="og:image:height" content="941">
   <meta property="og:image:alt" content="Fachada do Residencial Lourival Sgarioni em Franca">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:domain" content="residencial-lourival-sgarioni.vercel.app">
+  <meta name="twitter:url" content="https://residencial-lourival-sgarioni.vercel.app/">
   <meta name="twitter:title" content="Apartamentos à venda em Franca | Residencial Lourival Sgarioni">
   <meta name="twitter:description" content="Apartamentos à venda em Franca com 2 quartos, suíte, sacada, vaga de garagem e financiamento pelo Minha Casa, Minha Vida.">
-  <meta name="twitter:image" content="imagens/bg-hero.webp">
+  <meta name="twitter:image" content="https://residencial-lourival-sgarioni.vercel.app/imagens/bg-hero.webp">
   <meta name="twitter:image:alt" content="Fachada do Residencial Lourival Sgarioni em Franca">
 
   <link rel="icon" href="imagens/logo-icon.svg" type="image/svg+xml">
@@ -47,21 +52,31 @@
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://residencial-lourival-sgarioni.vercel.app/#website",
+        "url": "https://residencial-lourival-sgarioni.vercel.app/",
+        "name": "Residencial Lourival Sgarioni",
+        "inLanguage": "pt-BR"
+      },
+      {
         "@type": "WebPage",
-        "@id": "#pagina",
+        "@id": "https://residencial-lourival-sgarioni.vercel.app/#pagina",
+        "url": "https://residencial-lourival-sgarioni.vercel.app/",
         "name": "Apartamentos à venda em Franca | Residencial Lourival Sgarioni",
         "description": "Apartamentos à venda em Franca com 2 quartos, suíte, sacada, vaga de garagem e financiamento pelo Minha Casa, Minha Vida.",
         "inLanguage": "pt-BR",
-        "mainEntity": { "@id": "#residencial" }
+        "isPartOf": { "@id": "https://residencial-lourival-sgarioni.vercel.app/#website" },
+        "mainEntity": { "@id": "https://residencial-lourival-sgarioni.vercel.app/#residencial" }
       },
       {
         "@type": "ApartmentComplex",
-        "@id": "#residencial",
+        "@id": "https://residencial-lourival-sgarioni.vercel.app/#residencial",
+        "url": "https://residencial-lourival-sgarioni.vercel.app/",
         "name": "Residencial Lourival Sgarioni",
         "description": "Empreendimento residencial com quatro apartamentos novos e prontos para morar no Residencial Engenho Queimado, em Franca, São Paulo.",
-        "mainEntityOfPage": { "@id": "#pagina" },
-        "image": "imagens/bg-hero.webp",
-        "logo": "imagens/Logo.svg",
+        "mainEntityOfPage": { "@id": "https://residencial-lourival-sgarioni.vercel.app/#pagina" },
+        "image": "https://residencial-lourival-sgarioni.vercel.app/imagens/bg-hero.webp",
+        "logo": "https://residencial-lourival-sgarioni.vercel.app/imagens/Logo.svg",
         "telephone": "+55 16 99406-7595",
         "owner": { "@type": "Person", "name": "Dalva" },
         "numberOfAccommodationUnits": 4,
@@ -77,7 +92,7 @@
           "@type": "FloorPlan",
           "name": "Planta dos apartamentos do Residencial Lourival Sgarioni",
           "description": "Apartamento com aproximadamente 69 m², dois quartos, sendo uma suíte, dois banheiros, sala e cozinha integradas, área de serviço, sacada e uma vaga de garagem.",
-          "layoutImage": "imagens/Planta-1.webp",
+          "layoutImage": "https://residencial-lourival-sgarioni.vercel.app/imagens/Planta-1.webp",
           "numberOfAccommodationUnits": 4,
           "numberOfBedrooms": 2,
           "numberOfBathroomsTotal": 2,
@@ -208,7 +223,8 @@
           </div>
 
           <div class="location-map">
-            <iframe title="Mapa da Rua Cento e Dois, 1890, Franca, SP" src="https://www.google.com/maps?q=Rua+Cento+e+Dois+1890+Franca+SP&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <iframe title="Mapa da Rua Cento e Dois, 1890, Franca, SP" data-map-src="https://www.google.com/maps?q=Rua+Cento+e+Dois+1890+Franca+SP&amp;output=embed" srcdoc="<style>html,body{margin:0;height:100%;background:#e8e5dd}</style>" loading="eager" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+            <noscript><iframe title="Mapa da Rua Cento e Dois, 1890, Franca, SP" src="https://www.google.com/maps?q=Rua+Cento+e+Dois+1890+Franca+SP&amp;output=embed" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></noscript>
             <div class="location-map-label">
               <span>Franca · SP</span>
               <strong>Residencial Lourival Sgarioni</strong>

@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: Perplexity-User
 Allow: /
+
+Sitemap: https://residencial-lourival-sgarioni.vercel.app/sitemap.xml
