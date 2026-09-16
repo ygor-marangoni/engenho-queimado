@@ -36,6 +36,7 @@
 @media(max-width:820px){.ambientes-mode{order:5}.ambientes-mobile-list{order:4}.is-plan .ambientes-plan-controls{top:calc(-1 * min(118vw,620px) + 140px);right:68px;bottom:auto}.is-plan .ambientes-plan-toggle{top:calc(-1 * min(118vw,620px) + 140px);right:20px;bottom:auto}}
 .is-plan #ambientes-area{display:none}
 @media(max-width:820px){.ambientes-mobile-list{margin-left:-20px;padding-left:20px}.is-plan .room-tour-overlay{background:transparent}.is-plan .ambientes-header h2,.is-plan .ambientes-kicker{color:#343633;text-shadow:none}.is-plan .ambientes-kicker{color:#665f51}.is-plan .ambientes-header h2 small{color:#80643d}.is-plan .ambientes-plan-controls{top:-70px;right:68px;bottom:auto}.is-plan .ambientes-plan-toggle{top:-70px;right:20px;bottom:auto}}
+@media(max-width:820px){.room-tour,.room-tour-media{touch-action:pan-y}.room-tour-media img{pointer-events:none;touch-action:pan-y}.is-plan:not(.is-pan-active) .room-tour-media,.is-plan:not(.is-pan-active) .room-tour-media img{touch-action:pan-y}.is-plan.is-pan-active .room-tour-media,.is-plan.is-pan-active .room-tour-media img{touch-action:none}.is-plan.is-pan-active .room-tour-media img{pointer-events:auto}}
 .room-tour:not(.is-enhanced){visibility:hidden}
 @media(max-width:820px){.room-tour-overlay,.is-portrait .room-tour-overlay{background:linear-gradient(180deg,rgba(48,49,47,.46) 0%,rgba(48,49,47,.22) 30%,rgba(48,49,47,.03) 62%),linear-gradient(0deg,rgba(48,49,47,.48),transparent 52%)}}
 

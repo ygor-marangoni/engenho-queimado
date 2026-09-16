@@ -33,19 +33,210 @@
 
   <link rel="icon" href="imagens/logo-icon.svg" type="image/svg+xml">
   <link rel="preload" as="image" href="imagens/bg-hero.webp" media="(min-width: 821px)" fetchpriority="high">
-  <link rel="preload" as="image" href="imagens/bg-hero-mobile.webp" media="(max-width: 820px)" fetchpriority="high">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@8..144,400;8..144,500&family=Lexend:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="imagens/bg-hero-mobile-480.webp" imagesrcset="imagens/bg-hero-mobile-480.webp 480w, imagens/bg-hero-mobile-640.webp 640w" imagesizes="100vw" media="(max-width: 820px)" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="imagens/logo-icon.svg" media="(max-width: 820px)" fetchpriority="high">
+  <link rel="preload" as="font" href="fonts/google-sans-flex-latin.woff2" type="font/woff2" crossorigin>
+  <link rel="preload" as="font" href="fonts/lexend-latin.woff2" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/sections/header.css">
-  <link rel="stylesheet" href="css/sections/hero.css">
-  <link rel="stylesheet" href="css/sections/about.css">
-  <link rel="stylesheet" href="css/sections/room-tour.css">
-  <link rel="stylesheet" href="css/sections/location.css">
-  <link rel="stylesheet" href="css/sections/pricing.css">
-  <link rel="stylesheet" href="css/sections/contact.css">
+  <style data-critical>
+/* Base, tokens and shared components */
+@font-face{font-family:'Google Sans Flex';font-style:normal;font-weight:400 500;font-stretch:100%;font-display:swap;src:url('fonts/google-sans-flex-latin.woff2') format('woff2')}
+@font-face{font-family:'Lexend';font-style:normal;font-weight:400 700;font-display:swap;src:url('fonts/lexend-latin.woff2') format('woff2')}
+:root{--ink:#20211f;--soft:#555752;--paper:#f5f3ef;--terracotta:#b96f51;--gold:#bd9865;--line:#ddd8cf;--display:'Google Sans Flex',Arial,sans-serif;--serif:var(--display);--sans:'Lexend',Arial,sans-serif}
+
+
+*{box-sizing:border-box}
+
+
+html{scroll-behavior:smooth;overflow-x:clip}
+
+
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;overflow-x:clip}
+
+
+a{color:inherit;text-decoration:none}
+
+
+button{font:inherit;border:0;cursor:pointer}
+
+:where(a,button,[tabindex]):focus-visible{outline:2px solid #dfb57f;outline-offset:4px}
+
+
+.container{width:min(1160px,calc(100% - 64px));margin:auto}
+
+
+.skip-link{position:absolute;left:-999px}
+
+
+.skip-link:focus{left:16px;top:16px;background:#fff;padding:10px;z-index:99}
+
+
+.brand{display:flex;align-items:center;gap:11px;line-height:1}
+
+
+.brand-mark{display:grid;place-items:center;width:39px;height:39px;border:1px solid var(--gold);color:var(--gold);font-family:var(--serif);font-size:17px}
+
+
+.brand strong,.brand small{display:block}
+
+
+.brand strong{font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+
+
+.brand small{font-family:var(--serif);font-size:16px;margin-top:4px}
+
+
+.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin:0 0 20px}
+
+
+.eyebrow span{display:inline-block;width:27px;height:1px;background:currentColor;vertical-align:middle;margin-right:12px}
+
+
+.eyebrow.light{color:#e2be8a}
+
+.section-fade{opacity:0;transform:translate3d(0,18px,0);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1);transition-delay:var(--section-fade-delay,0ms)}
+.section-fade.section-fade--opacity{transform:none}
+.section-fade.is-visible{opacity:1;transform:none}
+
+/* Responsive */
+@media(max-width:820px){.container{width:min(100% - 40px,600px)}}
+
+@media(max-width:820px){.section-fade{transform:translate3d(0,12px,0);transition-duration:.68s}.section-fade.section-fade--opacity{transform:none}}
+
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.section-fade{opacity:1!important;transform:none!important;transition:none!important}}
+
+
+
+/* Header and responsive navigation */
+
+.site-header{position:absolute;inset:0 0 auto;height:84px;z-index:10;background:transparent}
+.header-inner{position:relative;width:min(1664px,100%);height:100%;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.site-header .brand{width:230px;height:36px;flex:none;background:url('imagens/Logo.svg') center/contain no-repeat}
+.site-header .brand>*{display:none}
+
+.main-nav{position:absolute;top:50%;left:32px;right:32px;display:flex;align-items:center;justify-content:center;gap:28px;font-family:var(--sans);font-size:14px;transform:translateY(calc(-50% + 8px))}
+.main-nav>a:not(.nav-cta){position:relative;color:rgba(255,255,255,.9);transition:color .2s ease,opacity .2s ease}
+.main-nav>a:not(.nav-cta)::after{content:'';position:absolute;left:0;right:0;bottom:-7px;height:1px;background:rgba(226,190,138,.78);transform:scaleX(0);transform-origin:center;transition:transform .2s ease}
+.main-nav>a:not(.nav-cta):hover{color:#fff;opacity:.82}
+.main-nav>a:not(.nav-cta):hover::after{transform:scaleX(1)}
+.nav-cta{position:absolute;right:0;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;gap:10px;padding:10px 15px;color:#fff;border:1px solid rgba(255,255,255,.68);border-radius:4px;background:rgba(16,23,29,.18);font-family:var(--sans);font-size:12px;letter-spacing:.04em;text-transform:uppercase;transition:background-color .2s ease,border-color .2s ease}
+.nav-cta:hover{color:#fff;border-color:#fff;background:rgba(16,23,29,.36)}
+.nav-cta .lucide-icon{display:none}
+.nav-cta::after{content:'';display:block;width:16px;height:16px;flex:none;background:url('imagens/whatsapp-icon.svg') center/contain no-repeat;filter:invert(1)}
+.menu-toggle{display:none}
+
+@media(max-width:1100px){
+  .header-inner{padding:0 24px}
+  .main-nav{display:flex;visibility:hidden;opacity:0;pointer-events:none;top:84px;left:24px;right:24px;padding:12px 20px 22px;transform:translateY(-8px);flex-direction:column;align-items:stretch;gap:0;background:#101c26;border:1px solid rgba(255,255,255,.16);box-shadow:0 18px 32px rgba(0,0,0,.3);transition:opacity .28s ease,transform .28s ease,visibility 0s linear .28s}
+  .main-nav.is-open{visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0);transition-delay:0s}
+  .main-nav>a:not(.nav-cta){padding:15px 0;border-bottom:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.9);font-size:16px}
+  .main-nav>a:not(.nav-cta)::after{display:none}
+  .main-nav .nav-cta{position:static;transform:none;justify-content:center;margin-top:18px;min-height:50px}
+  .menu-toggle{position:relative;display:flex;align-items:center;justify-content:center;width:112px;height:38px;flex:none;padding:0;border:1px solid rgba(255,255,255,.62);border-radius:999px;background:rgba(10,19,27,.34);color:#fff}
+  .menu-toggle::after{content:'Menu';font-family:var(--sans);font-size:16px;font-weight:400;line-height:1;letter-spacing:0}
+  .menu-toggle[aria-expanded='true']::after{content:'Fechar'}
+  .menu-toggle span{position:absolute;display:block;left:18px;width:20px!important;min-width:20px;max-width:20px;height:2px!important;min-height:2px;max-height:2px;padding:0;border:0;border-radius:2px;background:#e2be8a;box-sizing:border-box;transition:transform .2s ease,opacity .2s ease}
+  .menu-toggle span:nth-child(1){top:10px}
+  .menu-toggle span:nth-child(2){top:18px}
+  .menu-toggle span:nth-child(3){top:26px}
+  .menu-toggle:not([aria-expanded='true']) span{width:20px!important;min-width:20px!important;max-width:20px!important;height:2px!important;min-height:2px!important;max-height:2px!important;transform:none!important}
+  .menu-toggle[aria-expanded='true'] span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .menu-toggle[aria-expanded='true'] span:nth-child(2){opacity:0}
+  .menu-toggle[aria-expanded='true'] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+}
+
+@media(max-width:820px){
+  .site-header{height:88px}
+  .header-inner{padding:10px 20px}
+  .site-header .brand{width:68px;height:34px;background-image:url('imagens/logo-icon.svg')}
+  .main-nav{top:88px;left:0;right:0;max-height:calc(100svh - 88px);overflow-y:auto;border-left:0;border-right:0}
+  .menu-toggle{width:112px;height:38px;border:0;background:rgba(8,17,25,.38)}
+  .menu-toggle::after{font-size:15px;font-weight:400;transform:translateX(14px)}
+  .menu-toggle span{left:calc(50% - 31px);width:20px;min-width:20px;max-width:20px;height:2px;min-height:2px;max-height:2px}
+  .menu-toggle span:nth-child(1){top:12px}
+  .menu-toggle span:nth-child(2){top:18px}
+  .menu-toggle span:nth-child(3){top:24px}
+}
+
+html:has(body.menu-open),body.menu-open{width:100%;max-width:none;overflow:hidden}
+
+@media(max-width:1100px){
+  .menu-open .site-header{position:fixed;top:0;left:0;right:0;bottom:0;width:100vw;min-width:100vw;max-width:none;height:100dvh;z-index:100;background:#252525;overflow:hidden}
+  .menu-open .header-inner{display:block;width:100vw;min-width:100vw;max-width:none;height:100%;margin:0;padding:0 24px}
+  .menu-open .site-header .brand{position:fixed;top:20px;left:24px;z-index:102;width:148px;height:30px;background-image:url('imagens/Logo.svg');filter:brightness(0) saturate(100%) invert(80%) sepia(20%) saturate(720%) hue-rotate(355deg) brightness(101%) contrast(88%)}
+  .menu-open .menu-toggle{position:fixed;top:16px;right:20px;z-index:103;width:44px;height:44px;border:1px solid rgba(226,190,138,.42);border-radius:8px;background:#30312f}
+  .menu-open .menu-toggle::after{content:'';display:none}
+  .menu-open .menu-toggle span{left:11px;width:21px;height:2px;background:#e2be8a}
+  .menu-open .menu-toggle span:nth-child(1){top:13px;transform:translateY(8px) rotate(45deg)}
+  .menu-open .menu-toggle span:nth-child(2){top:21px;opacity:0}
+  .menu-open .menu-toggle span:nth-child(3){top:29px;transform:translateY(-8px) rotate(-45deg)}
+  .menu-open .main-nav{position:fixed;inset:0 auto auto 0;z-index:101;display:flex;visibility:visible;opacity:1;pointer-events:auto;transform:translateY(0);transition:opacity .3s ease,transform .3s ease,visibility 0s linear 0s;flex-direction:column;align-items:stretch;gap:0;width:100vw;min-width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding:92px 24px calc(24px + env(safe-area-inset-bottom));background:#252525;border:0;box-shadow:none}
+  .menu-open .main-nav::-webkit-scrollbar{display:none}
+  .menu-open .main-nav::before{content:'';display:block;height:1px;margin:0 0 8px;background:rgba(226,190,138,.18)}
+  .menu-open .main-nav>a:not(.nav-cta){display:flex;align-items:center;min-height:64px;padding:0;border-bottom:1px solid rgba(255,255,255,.12);color:#f6f3ed;font-size:17px;font-weight:400}
+  .menu-open .main-nav>a:not(.nav-cta):hover{color:#e2be8a;opacity:1}
+  .menu-open .main-nav .nav-cta{position:static;display:flex;justify-content:center;width:100%;min-height:54px;margin-top:auto;padding:0;border:1px solid rgba(226,190,138,.58);border-radius:5px;background:transparent;color:#f6f3ed;font-size:12px}
+  .menu-open .main-nav .nav-cta:hover{background:rgba(226,190,138,.08);border-color:#e2be8a}
+}
+
+@media(max-width:820px){
+  .menu-open .header-inner{width:100vw;min-width:100vw;max-width:none;padding:0 20px}
+  .menu-open .site-header .brand{top:20px;left:20px;width:68px;height:34px;background-image:url('imagens/logo-icon.svg')}
+  .menu-open .menu-toggle{top:16px;right:20px}
+  .menu-open .main-nav{padding-left:20px;padding-right:20px;padding-top:88px}
+}
+
+
+
+/* Hero */
+
+.hero{height:min(780px,100vh);min-height:680px;position:relative;color:#fff;display:flex;align-items:stretch;overflow:hidden;background:#101820}
+.hero-image,.hero-overlay{position:absolute;inset:0}
+.hero-image picture{display:block;width:100%;height:100%}
+.hero-image img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:saturate(.82);animation:hero-image-in 1.4s cubic-bezier(.22,1,.36,1) both}
+.hero-overlay{background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.45) 50%,rgba(0,0,0,.55) 100%);box-shadow:none}
+.hero-overlay::after{display:none}
+.hero-content{position:relative;display:flex;width:calc(100% - 64px);max-width:none;margin:0 auto;padding:32px 0 26px;flex-direction:column;justify-content:center;text-align:center}
+.hero-top{display:flex;flex-direction:column;align-items:center;gap:12px;transform:translateY(-9%)}
+.hero-title-block{padding-top:0}
+.hero h1{max-width:760px;margin:0;color:#f8f7f3;font-family:var(--display);font-size:68px;font-weight:400;line-height:.98;letter-spacing:-.025em;animation:hero-content-in .8s .18s cubic-bezier(.22,1,.36,1) both}
+.hero-info-block{max-width:580px;padding-top:0;margin:0;text-align:center}
+.hero-copy{max-width:520px;margin:0 auto 28px;color:rgba(255,255,255,.9);font-family:var(--sans);font-size:17px;line-height:1.65;text-shadow:0 2px 10px rgba(0,0,0,.5);animation:hero-content-in .8s .34s cubic-bezier(.22,1,.36,1) both}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:14px;animation:hero-content-in .8s .48s cubic-bezier(.22,1,.36,1) both}
+.hero-primary,.hero-secondary{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-width:190px;min-height:48px;padding:0 16px;font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:4px;transition:background-color .2s ease,border-color .2s ease,color .2s ease,transform .2s ease}
+.hero-primary{color:#f8f7f3;background:#171b1d;border:1px solid rgba(224,190,138,.52);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 8px 18px rgba(0,0,0,.12)}
+.hero-primary:hover{background:#252b2d;border-color:#dfb57f}
+.hero-primary .lucide-icon,.hero-secondary .lucide-icon{transition:transform .2s ease}
+.hero-primary:hover .lucide-icon,.hero-secondary:hover .lucide-icon{transform:translate(3px,-3px)}
+.hero-secondary{color:#f8f7f3;background:rgba(17,24,29,.12);border:1px solid rgba(255,255,255,.58)}
+.hero-secondary:hover{color:#fff;background:rgba(17,24,29,.34);border-color:#fff}
+.hero-bottom{position:absolute;bottom:26px;left:50%;right:auto;width:min(1664px,100%);max-width:1664px;box-sizing:border-box;transform:translateX(-50%);display:flex;justify-content:space-between;gap:36px;margin:0;padding:0 32px;color:rgba(255,255,255,.64);font-family:var(--sans);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;text-align:left;animation:hero-bottom-in .8s .62s cubic-bezier(.22,1,.36,1) both}
+.hero-meta{display:inline-flex;align-items:center;gap:8px}
+.hero-meta-icon{flex:none;color:rgba(255,255,255,.78)}
+.hero-note{color:rgba(255,255,255,.82)}
+
+@keyframes hero-image-in{from{opacity:.72;transform:scale(1.045)}to{opacity:1;transform:scale(1)}}
+@keyframes hero-content-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hero-bottom-in{from{opacity:0;transform:translate(-50%,18px)}to{opacity:1;transform:translate(-50%,0)}}
+
+@media(prefers-reduced-motion:reduce){.hero-image img,.hero h1,.hero-copy,.hero-actions,.hero-bottom{animation:none}}
+
+/* Responsive */
+@media(max-width:820px){.hero{min-height:720px;height:100svh;align-items:stretch}.hero-image img{content:url('imagens/bg-hero-mobile.webp');object-position:center center}.hero-overlay{background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.45) 50%,rgba(0,0,0,.55) 100%);box-shadow:none}.hero-overlay::after{display:none}.hero-content{width:calc(100% - 64px);padding:32px 0 18px}.hero-top{gap:12px;transform:translateY(-32%)}.hero-title-block{padding-top:0}.hero h1{max-width:390px;color:#f7f5ef;font-size:clamp(46px,11.5vw,62px);line-height:.98;letter-spacing:-.035em;text-shadow:none}.hero-info-block{max-width:460px;padding-top:0;margin:0}.hero-copy{max-width:440px;font-size:15px;line-height:1.55;margin-bottom:24px;text-shadow:none}.hero-actions{width:100%;align-items:center;flex-direction:column;gap:10px}.hero-primary,.hero-secondary{width:100%;min-width:0;min-height:46px;padding:0 14px;gap:10px;font-size:9.5px}.hero-bottom{bottom:18px;width:100%;padding:0 20px;font-size:8.5px;line-height:1.5}.hero-note{display:inline-flex;margin-top:0;text-align:right}}
+@media(max-width:820px){.hero-image img{content:normal;object-position:center center}}
+  </style>
+  <link rel="stylesheet" href="css/sections/about.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/sections/room-tour.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/sections/location.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/sections/pricing.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="css/sections/contact.css" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="css/sections/about.css">
+    <link rel="stylesheet" href="css/sections/room-tour.css">
+    <link rel="stylesheet" href="css/sections/location.css">
+    <link rel="stylesheet" href="css/sections/pricing.css">
+    <link rel="stylesheet" href="css/sections/contact.css">
+  </noscript>
 
   <script type="application/ld+json">
   {
@@ -148,8 +339,8 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-image">
         <picture>
-          <source media="(max-width: 820px)" srcset="imagens/bg-hero-mobile.webp" type="image/webp">
-          <img src="imagens/bg-hero.webp" alt="Fachada do Residencial Lourival Sgarioni em Franca" width="1672" height="941" fetchpriority="high" decoding="async">
+          <source media="(max-width: 820px)" srcset="imagens/bg-hero-mobile-480.webp 480w, imagens/bg-hero-mobile-640.webp 640w" sizes="100vw" width="941" height="1672" type="image/webp">
+          <img src="imagens/bg-hero.webp" alt="Fachada do Residencial Lourival Sgarioni em Franca" width="1672" height="941" loading="eager" fetchpriority="high" decoding="async">
         </picture>
       </div>
       <div class="hero-overlay" aria-hidden="true"></div>
@@ -186,20 +377,20 @@
     <section class="project-overview" id="project-overview" aria-labelledby="project-overview-title">
       <div class="container project-overview-inner">
         <div class="project-overview-copy">
-          <img class="project-overview-logo" src="imagens/Logo.svg" alt="Residencial Lourival Sgarioni" width="1843" height="283" decoding="async">
+          <img class="project-overview-logo" src="imagens/Logo.svg" alt="Residencial Lourival Sgarioni" width="1843" height="283" loading="lazy" fetchpriority="low" decoding="async">
           <h2 id="project-overview-title" class="project-overview-title">Sobre o<br>Empreendimento</h2>
           <p class="project-overview-description">Quatro apartamentos novos, com plantas funcionais, ambientes integrados e tudo o que você precisa para viver com praticidade e conforto com sua família.</p>
           <p class="project-overview-location"><span>Franca · SP</span><small>Residencial Engenho Queimado</small></p>
         </div>
         <ul class="project-stats" aria-label="Características do apartamento">
-          <li><img class="project-stat-visual" src="imagens/4-apts.webp" alt="" width="192" height="192" loading="lazy" decoding="async"><strong>04</strong><span>Apartamentos no empreendimento</span></li>
-          <li><img class="project-stat-visual" src="imagens/area-util.webp" alt="" width="192" height="192" loading="lazy" decoding="async"><strong>69<small>m²</small></strong><span>Área aproximada</span></li>
-          <li><img class="project-stat-visual" src="imagens/quarto-suite-icon.webp" alt="" width="192" height="192" loading="lazy" decoding="async"><strong>02</strong><span>Quartos, sendo 1 suíte</span></li>
-          <li><img class="project-stat-visual" src="imagens/garagem-icon.webp" alt="" width="192" height="192" loading="lazy" decoding="async"><strong>01</strong><span>Vaga de garagem por unidade</span></li>
-          <li><img class="project-stat-visual" src="imagens/2 banheiros icon card.webp" alt="" width="192" height="192" loading="lazy" decoding="async"><strong>02</strong><span>Banheiros</span></li>
-          <li><img class="project-stat-visual" src="imagens/integrada card icon.webp" alt="" width="192" height="192" loading="lazy" decoding="async"><strong class="project-stat-value-text">Integrada</strong><span>Sala e cozinha</span></li>
-          <li><img class="project-stat-visual" src="imagens/area servico icon.webp" alt="" width="192" height="192" loading="lazy" decoding="async"><strong class="project-stat-value-text">Serviço</strong><span>Espaço dedicado</span></li>
-          <li><img class="project-stat-visual" src="imagens/casa pronta icon.webp" alt="" width="192" height="192" loading="lazy" decoding="async"><strong class="project-stat-value-text">Prontos</strong><span>Para morar</span></li>
+          <li><img class="project-stat-visual" src="imagens/4-apts.webp" srcset="imagens/4-apts-64.webp 64w, imagens/4-apts-96.webp 96w, imagens/4-apts.webp 192w" sizes="(max-width: 820px) 58px, 64px" alt="" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async"><strong>04</strong><span>Apartamentos no empreendimento</span></li>
+          <li><img class="project-stat-visual" src="imagens/area-util.webp" srcset="imagens/area-util-64.webp 64w, imagens/area-util-96.webp 96w, imagens/area-util.webp 192w" sizes="(max-width: 820px) 58px, 64px" alt="" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async"><strong>69<small>m²</small></strong><span>Área aproximada</span></li>
+          <li><img class="project-stat-visual" src="imagens/quarto-suite-icon.webp" srcset="imagens/quarto-suite-icon-64.webp 64w, imagens/quarto-suite-icon-96.webp 96w, imagens/quarto-suite-icon.webp 192w" sizes="(max-width: 820px) 58px, 64px" alt="" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async"><strong>02</strong><span>Quartos, sendo 1 suíte</span></li>
+          <li><img class="project-stat-visual" src="imagens/garagem-icon.webp" srcset="imagens/garagem-icon-64.webp 64w, imagens/garagem-icon-96.webp 96w, imagens/garagem-icon.webp 192w" sizes="(max-width: 820px) 58px, 64px" alt="" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async"><strong>01</strong><span>Vaga de garagem por unidade</span></li>
+          <li><img class="project-stat-visual" src="imagens/2 banheiros icon card.webp" srcset="imagens/2%20banheiros%20icon%20card-64.webp 64w, imagens/2%20banheiros%20icon%20card-96.webp 96w, imagens/2%20banheiros%20icon%20card.webp 192w" sizes="(max-width: 820px) 58px, 64px" alt="" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async"><strong>02</strong><span>Banheiros</span></li>
+          <li><img class="project-stat-visual" src="imagens/integrada card icon.webp" srcset="imagens/integrada%20card%20icon-64.webp 64w, imagens/integrada%20card%20icon-96.webp 96w, imagens/integrada%20card%20icon.webp 192w" sizes="(max-width: 820px) 58px, 64px" alt="" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async"><strong class="project-stat-value-text">Integrada</strong><span>Sala e cozinha</span></li>
+          <li><img class="project-stat-visual" src="imagens/area servico icon.webp" srcset="imagens/area%20servico%20icon-64.webp 64w, imagens/area%20servico%20icon-96.webp 96w, imagens/area%20servico%20icon.webp 192w" sizes="(max-width: 820px) 58px, 64px" alt="" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async"><strong class="project-stat-value-text">Serviço</strong><span>Espaço dedicado</span></li>
+          <li><img class="project-stat-visual" src="imagens/casa pronta icon.webp" srcset="imagens/casa%20pronta%20icon-64.webp 64w, imagens/casa%20pronta%20icon-96.webp 96w, imagens/casa%20pronta%20icon.webp 192w" sizes="(max-width: 820px) 58px, 64px" alt="" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async"><strong class="project-stat-value-text">Prontos</strong><span>Para morar</span></li>
         </ul>
       </div>
     </section>
@@ -234,22 +425,22 @@
 
           <div class="location-benefits location-benefits__grid" aria-label="Benefícios da localização">
             <article class="location-benefits__card">
-              <img class="location-benefits__icon" src="imagens/upa 24h icon.webp" alt="UPA 24 horas" width="192" height="192" loading="lazy" decoding="async">
+              <img class="location-benefits__icon" src="imagens/upa 24h icon.webp" srcset="imagens/upa%2024h%20icon-64.webp 64w, imagens/upa%2024h%20icon-96.webp 96w, imagens/upa%2024h%20icon.webp 192w" sizes="(max-width: 600px) 58px, 68px" alt="UPA 24 horas" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async">
               <h3 class="location-benefits__title">UPA 24h</h3>
               <p class="location-benefits__description">Em frente ao residencial, trazendo mais praticidade e segurança para a rotina.</p>
             </article>
             <article class="location-benefits__card">
-              <img class="location-benefits__icon" src="imagens/super mercado icon.webp" alt="Supermercados" width="192" height="192" loading="lazy" decoding="async">
+              <img class="location-benefits__icon" src="imagens/super mercado icon.webp" srcset="imagens/super%20mercado%20icon-64.webp 64w, imagens/super%20mercado%20icon-96.webp 96w, imagens/super%20mercado%20icon.webp 192w" sizes="(max-width: 600px) 58px, 68px" alt="Supermercados" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async">
               <h3 class="location-benefits__title">Supermercados</h3>
               <p class="location-benefits__description">Opções de mercado na região para facilitar as compras do dia a dia.</p>
             </article>
             <article class="location-benefits__card">
-              <img class="location-benefits__icon" src="imagens/farmacia icon.webp" alt="Farmácias" width="192" height="192" loading="lazy" decoding="async">
+              <img class="location-benefits__icon" src="imagens/farmacia icon.webp" srcset="imagens/farmacia%20icon-64.webp 64w, imagens/farmacia%20icon-96.webp 96w, imagens/farmacia%20icon.webp 192w" sizes="(max-width: 600px) 58px, 68px" alt="Farmácias" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async">
               <h3 class="location-benefits__title">Farmácias</h3>
               <p class="location-benefits__description">Serviços essenciais e opções de farmácia próximos ao residencial.</p>
             </article>
             <article class="location-benefits__card">
-              <img class="location-benefits__icon" src="imagens/escolas icon.webp" alt="Escolas" width="192" height="192" loading="lazy" decoding="async">
+              <img class="location-benefits__icon" src="imagens/escolas icon.webp" srcset="imagens/escolas%20icon-64.webp 64w, imagens/escolas%20icon-96.webp 96w, imagens/escolas%20icon.webp 192w" sizes="(max-width: 600px) 58px, 68px" alt="Escolas" width="192" height="192" loading="lazy" fetchpriority="low" decoding="async">
               <h3 class="location-benefits__title">Escolas</h3>
               <p class="location-benefits__description">Opções de ensino no entorno, facilitando a rotina de quem mora na região.</p>
             </article>

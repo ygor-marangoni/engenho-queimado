@@ -1,4 +1,6 @@
 /* Base, tokens and shared components */
+@font-face{font-family:'Google Sans Flex';font-style:normal;font-weight:400 500;font-stretch:100%;font-display:swap;src:url('../fonts/google-sans-flex-latin.woff2') format('woff2')}
+@font-face{font-family:'Lexend';font-style:normal;font-weight:400 700;font-display:swap;src:url('../fonts/lexend-latin.woff2') format('woff2')}
 :root{--ink:#20211f;--soft:#555752;--paper:#f5f3ef;--terracotta:#b96f51;--gold:#bd9865;--line:#ddd8cf;--display:'Google Sans Flex',Arial,sans-serif;--serif:var(--display);--sans:'Lexend',Arial,sans-serif}
 
 
